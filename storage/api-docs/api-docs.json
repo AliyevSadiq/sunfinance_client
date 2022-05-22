@@ -1,0 +1,182 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sunfinance client api documentation",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/clients": {
+            "post": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Store new client",
+                "description": "Returns client data",
+                "operationId": "8ecbd89fcd366601dec7c4acaa961f52",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/clients/{client}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get client information",
+                "description": "Return client data",
+                "operationId": "80aefec375e76113904bed48494ad1d3",
+                "parameters": [
+                    {
+                        "name": "client",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Update existing client",
+                "description": "Returns updated client data",
+                "operationId": "536da3b63a4f4e1f64e6f4a19dfe2263",
+                "parameters": [
+                    {
+                        "name": "client",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Delete existing client",
+                "description": "Deletes a record and returns no content",
+                "operationId": "db83cbee26946b6fd8bacc3c61c7183f",
+                "parameters": [
+                    {
+                        "name": "client",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ClientRequest": {
+                "title": "Client Store",
+                "description": "Client model",
+                "properties": {
+                    "firstName": {
+                        "title": "Client firstName",
+                        "description": "Client firstName",
+                        "type": "string",
+                        "example": "first name test"
+                    },
+                    "lastName": {
+                        "title": "Client lastName",
+                        "description": "Client lastName",
+                        "type": "string",
+                        "example": "last name test"
+                    },
+                    "email": {
+                        "title": "Client email",
+                        "description": "Client email",
+                        "type": "string",
+                        "example": "email@bk.ru"
+                    },
+                    "phoneNumber": {
+                        "title": "Client phoneNumber",
+                        "description": "Client phoneNumber",
+                        "type": "string",
+                        "example": "aosdgoauisdgaosd"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Client Store"
+                }
+            }
+        }
+    }
+}

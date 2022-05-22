@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+
+  nginx:
+    container_name: client__nginx
+    build: ./docker/nginx
+    volumes:
+      - .:/app:delegated
+    ports:
+      - 8888:80
+    networks:
+        - client_network
+
+  php-fpm:
+    container_name: client__php-fpm
+    build: ./docker/php-fpm
+    volumes:
+      - .:/app:delegated
+    ports:
+      - 9001:9000
+    networks:
+        - client_network
+
+  php-cli_client:
+    container_name: client__php-cli
+    build: ./docker/php-cli
+    volumes:
+      - .:/app:delegated
+      - composer_cache_client:/home/appuser_client/.composer/cache:delegated
+
+  postgresql:
+    container_name: client__postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+        - client_network
+
+
+volumes:
+  composer_cache_client:
+  postgres_data:
+
+
+#networks:
+#    proxynet:
+#        name: custom_network
+networks:
+    client_network:
+        driver: bridge
