@@ -19,7 +19,7 @@ class ClientRequest
      *      title="Client firstName",
      *      description="Client firstName",
      *      type="string",
-     *      example="first name test"
+     *      example="John"
      * )
      */
     public string $firstName;
@@ -29,7 +29,7 @@ class ClientRequest
      *      title="Client lastName",
      *      description="Client lastName",
      *      type="string",
-     *      example="last name test"
+     *      example="Doe"
      * )
      */
     public string $lastName;
@@ -40,7 +40,7 @@ class ClientRequest
      *      title="Client email",
      *      description="Client email",
      *      type="string",
-     *      example="email@bk.ru"
+     *      example="john.doe@mail.com"
      * )
      */
     public string $email;
@@ -51,7 +51,7 @@ class ClientRequest
      *      title="Client phoneNumber",
      *      description="Client phoneNumber",
      *      type="string",
-     *      example="aosdgoauisdgaosd"
+     *      example="+37101234567"
      * )
      */
     public string $phoneNumber;

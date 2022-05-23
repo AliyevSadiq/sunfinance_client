@@ -24,10 +24,10 @@ class ClientStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstName'=>['required','string','min:2','max:32'],
-            'lastName'=>['required','string','min:2','max:32'],
+            'firstName'=>['required','regex:/(^[A-Za-z ]+$)+/','min:2','max:32'],
+            'lastName'=>['required','regex:/(^[A-Za-z ]+$)+/','min:2','max:32'],
             'email'=>['required','email','unique:clients,email'],
-            'phoneNumber'=>['required','unique:clients,phoneNumber'],
+            'phoneNumber'=>['required','regex:/(^\\+?[0-9]{1,3}[ 1-9]\\d{1,12}$)+/','unique:clients,phoneNumber'],
         ];
     }
 }

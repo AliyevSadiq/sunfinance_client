@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *     version="1.0",
- *     title="Sunfinance client api documentation"
+ *     title="Client api documentation"
  * )
  */
 class Controller extends BaseController

@@ -1,5 +1,10 @@
 version: '3.8'
 
+networks:
+    laravel:
+    databse:
+        name: test
+
 services:
 
   nginx:
@@ -10,7 +15,7 @@ services:
     ports:
       - 8888:80
     networks:
-        - client_network
+        - laravel
 
   php-fpm:
     container_name: client__php-fpm
@@ -20,7 +25,7 @@ services:
     ports:
       - 9001:9000
     networks:
-        - client_network
+        - laravel
 
   php-cli_client:
     container_name: client__php-cli
@@ -28,6 +33,8 @@ services:
     volumes:
       - .:/app:delegated
       - composer_cache_client:/home/appuser_client/.composer/cache:delegated
+    networks:
+        - laravel
 
   postgresql:
     container_name: client__postgres
@@ -42,17 +49,10 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-        - client_network
+        - laravel
+        - databse
 
 
 volumes:
   composer_cache_client:
   postgres_data:
-
-
-#networks:
-#    proxynet:
-#        name: custom_network
-networks:
-    client_network:
-        driver: bridge

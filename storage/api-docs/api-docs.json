@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Sunfinance client api documentation",
+        "title": "Client api documentation",
         "version": "1.0"
     },
     "paths": {
@@ -151,25 +151,25 @@
                         "title": "Client firstName",
                         "description": "Client firstName",
                         "type": "string",
-                        "example": "first name test"
+                        "example": "John"
                     },
                     "lastName": {
                         "title": "Client lastName",
                         "description": "Client lastName",
                         "type": "string",
-                        "example": "last name test"
+                        "example": "Doe"
                     },
                     "email": {
                         "title": "Client email",
                         "description": "Client email",
                         "type": "string",
-                        "example": "email@bk.ru"
+                        "example": "john.doe@mail.com"
                     },
                     "phoneNumber": {
                         "title": "Client phoneNumber",
                         "description": "Client phoneNumber",
                         "type": "string",
-                        "example": "aosdgoauisdgaosd"
+                        "example": "+37101234567"
                     }
                 },
                 "type": "object",
