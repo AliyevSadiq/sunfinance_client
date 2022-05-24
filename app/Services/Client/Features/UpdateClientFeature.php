@@ -6,7 +6,7 @@ namespace App\Services\Client\Features;
 
 use App\Data\Models\Client;
 use App\Domains\Client\Jobs\UpdateClientJob;
-use App\Domains\Client\Requests\ClientUpdateRequest;
+use App\Domains\Client\Requests\ClientStoreRequest;
 use App\Http\Resources\ClientResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
@@ -24,10 +24,10 @@ class UpdateClientFeature extends Feature
     }
 
     /**
-     * @param ClientUpdateRequest $request
+     * @param ClientStoreRequest $request
      * @return mixed
      */
-    public function handle(ClientUpdateRequest $request)
+    public function handle(ClientStoreRequest $request)
     {
         $client=$this->run(UpdateClientJob::class,[
             'client'=>$this->client,
