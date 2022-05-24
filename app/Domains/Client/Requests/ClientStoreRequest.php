@@ -25,8 +25,8 @@ class ClientStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstName'=>['required','regex:/(^[A-Za-z ]+$)+/','min:2','max:32'],
-            'lastName'=>['required','regex:/(^[A-Za-z ]+$)+/','min:2','max:32'],
+            'firstName'=>['required','regex:/(^[A-Za-z]+$)+/','min:2','max:32'],
+            'lastName'=>['required','regex:/(^[A-Za-z]+$)+/','min:2','max:32'],
             'email'=>['required','email',Rule::unique('clients','email')->ignore($this->client ? $this->client->id : null)],
             'phoneNumber'=>['required','regex:/(^\\+?[0-9]{1,3}[ 1-9]\\d{1,12}$)+/',Rule::unique('clients','phoneNumber')->ignore($this->client ? $this->client->id : null)],
         ];

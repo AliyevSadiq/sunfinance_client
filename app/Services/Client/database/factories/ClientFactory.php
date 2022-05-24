@@ -18,8 +18,8 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [
-            'firstName' => $this->faker->regexify('[A-Za-z ]{2,32}'),
-            'lastName' => $this->faker->regexify('[A-Za-z ]{2,32}'),
+            'firstName' => $this->faker->regexify('[A-Za-z]{2,32}'),
+            'lastName' => $this->faker->regexify('[A-Za-z]{2,32}'),
             'email' => $this->faker->email,
             'phoneNumber' => $this->faker->e164PhoneNumber
         ];

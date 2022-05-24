@@ -34,7 +34,7 @@ class UpdateClientJobTest extends TestCase
     {
         parent::setUp();
 
-        $this->name = $this->faker->regexify('[A-Za-z ]{2,32}');
+        $this->name = $this->faker->regexify('[A-Za-z]{2,32}');
         $this->email = $this->faker->email;
         $this->phone = $this->faker->e164PhoneNumber;
 

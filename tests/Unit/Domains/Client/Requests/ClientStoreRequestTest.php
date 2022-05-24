@@ -29,7 +29,7 @@ class ClientStoreRequestTest extends TestCase
     public function validationProvider()
     {
         $faker = Factory::create(Factory::DEFAULT_LOCALE);
-        $name = $faker->regexify('[A-Za-z ]{2,32}');
+        $name = $faker->regexify('[A-Za-z]{2,32}');
         $email = $faker->email;
         $phone = $faker->e164PhoneNumber;
 
@@ -111,6 +111,15 @@ class ClientStoreRequestTest extends TestCase
                     'phoneNumber' => $faker->phoneNumber,
                 ]
             ],
+            'request_should_pass_when_email_format_is_invalid' => [
+                'passed' => false,
+                'data' => [
+                    'firstName' => $name,
+                    'lastName' => $name,
+                    'email' => $this->faker->text,
+                    'phoneNumber' => $phone
+                ]
+            ],
             'request_should_pass_when_data_is_provided' => [
                 'passed' => true,
                 'data' => [
@@ -131,8 +140,8 @@ class ClientStoreRequestTest extends TestCase
         $client=Client::factory()->create()->first();
 
         $this->validation_results_as_expected(false, [
-            'firstName' => $this->faker->regexify('[A-Za-z ]{2,32}'),
-            'lastName' => $this->faker->regexify('[A-Za-z ]{2,32}'),
+            'firstName' => $this->faker->regexify('[A-Za-z]{2,32}'),
+            'lastName' => $this->faker->regexify('[A-Za-z]{2,32}'),
             'email' => $client->email,
             'phoneNumber' => $this->faker->e164PhoneNumber
         ]);
@@ -146,8 +155,8 @@ class ClientStoreRequestTest extends TestCase
         $client=Client::factory()->create()->first();
 
         $this->validation_results_as_expected(false, [
-            'firstName' => $this->faker->regexify('[A-Za-z ]{2,32}'),
-            'lastName' => $this->faker->regexify('[A-Za-z ]{2,32}'),
+            'firstName' => $this->faker->regexify('[A-Za-z]{2,32}'),
+            'lastName' => $this->faker->regexify('[A-Za-z]{2,32}'),
             'email' => $this->faker->email,
             'phoneNumber' =>$client->phoneNumber
         ]);
