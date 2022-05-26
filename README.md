@@ -31,7 +31,7 @@ $ make app-init //for installing packages
 $ make key-generate //generation key for .env file 
 $ make app-migrate //for migration 
 $ make doc-generate //for generating documentation
-$ make app-rabbitmq //for working witj rabbitmq
+$ make app-rabbitmq //for working with rabbitmq
 ```
 
 For running tests execute:
@@ -39,3 +39,5 @@ For running tests execute:
 ```console
 $ make app-test
 ```
+
+For working with rabbitmq added connection parameters in .env.example 
