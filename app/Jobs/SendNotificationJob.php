@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Jobs;
 
 use App\Data\Models\Notification;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Schema;
 
-class PingJob implements ShouldQueue
+class SendNotificationJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -23,9 +25,8 @@ class PingJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Notification $notification,int $status,string $channel_type)
+    public function __construct(Notification $notification, int $status, string $channel_type)
     {
-        //
         $this->notification = $notification;
         $this->status = $status;
         $this->channel_type = $channel_type;
@@ -38,9 +39,14 @@ class PingJob implements ShouldQueue
      */
     public function handle()
     {
-        $notification=Notification::find($this->notification->id);
-        $notification->status=2;
-        $notification->save();
-        info('send='.$this->channel_type);
+        try {
+            $this->notification->update([
+                'status' => $this->status,
+                'created_at' => Carbon::now()
+            ]);
+            info('send=' . $this->channel_type);
+        } catch (\Exception $exception) {
+            info($exception->getMessage());
+        }
     }
 }
