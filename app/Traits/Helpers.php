@@ -6,6 +6,7 @@ use Aeq\LargestRemainder\Math\LargestRemainder;
 use App\Data\Models\User;
 use App\Services\User\Enums\UserType;
 use Carbon\CarbonImmutable;
+use Exception;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Validation\ValidationException;
 
@@ -16,7 +17,7 @@ trait Helpers
         try {
             $carbon = CarbonImmutable::parse($time);
             return $format ? $carbon->format($format) : $carbon;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw ValidationException::withMessages(['date format incorrect']);
         }
     }
@@ -35,19 +36,19 @@ trait Helpers
     {
         try {
             return $callback();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return null;
         }
-    }
-
-    public function authUser(): Authenticatable
-    {
-        return auth('sanctum')->user();
     }
 
     public function isAdmin(): bool
     {
         return $this->authUser()->type == UserType::ADMIN;
+    }
+
+    public function authUser(): Authenticatable
+    {
+        return auth('sanctum')->user();
     }
 
     public function userIs(int $user_type): bool

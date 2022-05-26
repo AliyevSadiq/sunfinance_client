@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class StoreClientFeatureTest extends TestCase
 {
-    use WithFaker,RefreshDatabase;
+    use WithFaker, RefreshDatabase;
 
     /**
      * @var Client
@@ -28,7 +28,6 @@ class StoreClientFeatureTest extends TestCase
     private string $email;
 
 
-
     public function setUp(): void
     {
         parent::setUp();
@@ -42,14 +41,14 @@ class StoreClientFeatureTest extends TestCase
      */
     public function feature_should_pass_when_client_is_created()
     {
-         $res=$this->postJson(route('clients.store'),[
-             'firstName'=>$this->name,
-             'lastName'=>$this->name,
-             'email'=>$this->email,
-             'phoneNumber'=>$this->phone,
-         ]);
+        $res = $this->postJson(route('clients.store'), [
+            'firstName' => $this->name,
+            'lastName' => $this->name,
+            'email' => $this->email,
+            'phoneNumber' => $this->phone,
+        ]);
 
-        $this->assertEquals($this->name,$res->json('data')['client']['firstName']);
-        $this->assertEquals(Response::HTTP_CREATED,$res->getStatusCode());
+        $this->assertEquals($this->name, $res->json('data')['client']['firstName']);
+        $this->assertEquals(Response::HTTP_CREATED, $res->getStatusCode());
     }
 }

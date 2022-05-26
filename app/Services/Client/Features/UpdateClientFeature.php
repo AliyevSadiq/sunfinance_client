@@ -28,16 +28,16 @@ class UpdateClientFeature extends Feature
      */
     public function handle(ClientStoreRequest $request)
     {
-        $client=$this->run(UpdateClientJob::class,[
-            'client'=>$this->client,
-            'firstName'=>$request->firstName,
-            'lastName'=>$request->lastName,
-            'email'=>$request->email,
-            'phoneNumber'=>$request->phoneNumber,
+        $client = $this->run(UpdateClientJob::class, [
+            'client' => $this->client,
+            'firstName' => $request->firstName,
+            'lastName' => $request->lastName,
+            'email' => $request->email,
+            'phoneNumber' => $request->phoneNumber,
         ]);
 
         return $this->run(new RespondWithJsonJob([
             'client' => new ClientResource($client)
-        ],Response::HTTP_ACCEPTED));
+        ], Response::HTTP_ACCEPTED));
     }
 }

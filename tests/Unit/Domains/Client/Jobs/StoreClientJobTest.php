@@ -3,14 +3,14 @@
 namespace Tests\Unit\Domains\Client\Jobs;
 
 use App\Data\Models\Client;
+use App\Domains\Client\Jobs\StoreClientJob;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Domains\Client\Jobs\StoreClientJob;
 
 class StoreClientJobTest extends TestCase
 {
-    use WithFaker,RefreshDatabase;
+    use WithFaker, RefreshDatabase;
 
     /**
      * @var Client
@@ -40,9 +40,9 @@ class StoreClientJobTest extends TestCase
         $this->email = $this->faker->email;
         $this->phone = $this->faker->e164PhoneNumber;
 
-        $job=new StoreClientJob($this->name,$this->name,$this->phone,$this->email);
+        $job = new StoreClientJob($this->name, $this->name, $this->phone, $this->email);
 
-        $this->client=$job->handle();
+        $this->client = $job->handle();
     }
 
     /**
@@ -50,7 +50,7 @@ class StoreClientJobTest extends TestCase
      */
     public function job_should_pass_when_firstname_exists()
     {
-        $this->assertEquals($this->client->getFirstName(),$this->name);
+        $this->assertEquals($this->client->getFirstName(), $this->name);
     }
 
     /**
@@ -58,7 +58,7 @@ class StoreClientJobTest extends TestCase
      */
     public function job_should_pass_when_lastname_exists()
     {
-        $this->assertEquals($this->client->getLastName(),$this->name);
+        $this->assertEquals($this->client->getLastName(), $this->name);
     }
 
     /**
@@ -66,7 +66,7 @@ class StoreClientJobTest extends TestCase
      */
     public function job_should_pass_when_email_exists()
     {
-        $this->assertEquals($this->client->getEmail(),$this->email);
+        $this->assertEquals($this->client->getEmail(), $this->email);
     }
 
     /**
@@ -74,6 +74,6 @@ class StoreClientJobTest extends TestCase
      */
     public function job_should_pass_when_phoneNumber_exists()
     {
-        $this->assertEquals($this->client->getPhoneNumber(),$this->phone);
+        $this->assertEquals($this->client->getPhoneNumber(), $this->phone);
     }
 }

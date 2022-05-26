@@ -6,19 +6,18 @@ use App\Data\Models\Client;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Domains\Client\Jobs\DeleteClientJob;
 
 class DeleteClientJobTest extends TestCase
 {
 
-    use RefreshDatabase,WithFaker;
+    use RefreshDatabase, WithFaker;
 
     /**
      * @test
      */
     public function job_should_pass_when_model_exists()
     {
-        $client=Client::factory()->create()->first();
+        $client = Client::factory()->create()->first();
         $this->assertModelExists($client);
     }
 
@@ -27,8 +26,8 @@ class DeleteClientJobTest extends TestCase
      */
     public function job_should_pass_when_data_deleted()
     {
-        $client=Client::factory()->create()->first();
-        $this->assertEquals(true,$client->delete());
+        $client = Client::factory()->create()->first();
+        $this->assertEquals(true, $client->delete());
     }
 
 }

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Domains\Client\Jobs;
 
 use App\Data\Models\Client;
-use Illuminate\Database\Eloquent\Model;
 use Lucid\Units\Job;
 
 class StoreClientJob extends Job
@@ -33,7 +32,7 @@ class StoreClientJob extends Job
      */
     public function handle(): Client
     {
-        $client=new Client();
+        $client = new Client();
         $client->setFirstName($this->firstName)
             ->setLastName($this->lastName)
             ->setPhoneNumber($this->phoneNumber)

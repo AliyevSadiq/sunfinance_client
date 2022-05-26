@@ -5,19 +5,13 @@ declare(strict_types=1);
 namespace App\Services\Client\Http\Controllers;
 
 use App\Data\Models\Client;
-use App\Services\Client\Features\{
-    GetClientFeature,
-    StoreClientFeature,
-    UpdateClientFeature,
-    DeleteClientFeature
-};
+use App\Services\Client\Features\{DeleteClientFeature, GetClientFeature, StoreClientFeature, UpdateClientFeature};
 use App\Traits\WithTransaction;
 use Lucid\Units\Controller;
 
 class ClientController extends Controller
 {
     use WithTransaction;
-
 
 
     /**
@@ -103,6 +97,7 @@ class ClientController extends Controller
             'client' => $client
         ]);
     }
+
     /**
      * @OA\Delete(
      *      tags={"Clients"},

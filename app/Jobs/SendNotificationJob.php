@@ -6,6 +6,7 @@ namespace App\Jobs;
 
 use App\Data\Models\Notification;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -45,7 +46,7 @@ class SendNotificationJob implements ShouldQueue
                 'created_at' => Carbon::now()
             ]);
             info('send=' . $this->channel_type);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             info($exception->getMessage());
         }
     }

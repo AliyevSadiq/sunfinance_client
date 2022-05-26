@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @throws Throwable
      */
     public function render($request, Throwable $exception)

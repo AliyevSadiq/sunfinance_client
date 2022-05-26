@@ -20,7 +20,7 @@ class UpdateClientJob extends Job
      *
      * @return void
      */
-    public function __construct(Client $client,string $firstName, string $lastName, string $phoneNumber, string $email)
+    public function __construct(Client $client, string $firstName, string $lastName, string $phoneNumber, string $email)
     {
         //
         $this->client = $client;

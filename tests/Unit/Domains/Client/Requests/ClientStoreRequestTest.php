@@ -4,19 +4,20 @@ namespace Tests\Unit\Domains\Client\Requests;
 
 use App\Data\Models\Client;
 use App\Domains\Client\Requests\ClientStoreRequest;
+use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Validation\Validator;
 use Tests\TestCase;
-use Faker\Factory;
 
 class ClientStoreRequestTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    /** @var \App\Domains\Client\Requests\ClientStoreRequest */
+    /** @var ClientStoreRequest */
     private $rules;
 
-    /** @var \Illuminate\Validation\Validator */
+    /** @var Validator */
     private $validator;
 
     public function setUp(): void
@@ -55,7 +56,7 @@ class ClientStoreRequestTest extends TestCase
                 'passed' => false,
                 'data' => [
                     'firstName' => $faker->paragraphs(33),
-                     'lastName' => $name,
+                    'lastName' => $name,
                     'email' => $email,
                     'phoneNumber' => $phone
                 ]
@@ -64,7 +65,7 @@ class ClientStoreRequestTest extends TestCase
                 'passed' => false,
                 'data' => [
                     'firstName' => $faker->numberBetween(1, 10),
-                     'lastName' => $name,
+                    'lastName' => $name,
                     'email' => $email,
                     'phoneNumber' => $phone
                 ]
@@ -155,28 +156,13 @@ class ClientStoreRequestTest extends TestCase
      */
     public function request_should_fail_when_email_already_exists()
     {
-        $client=Client::factory()->create()->first();
+        $client = Client::factory()->create()->first();
 
         $this->validation_results_as_expected(false, [
             'firstName' => $this->faker->regexify('[A-Za-z]{2,32}'),
             'lastName' => $this->faker->regexify('[A-Za-z]{2,32}'),
             'email' => $client->email,
             'phoneNumber' => $this->faker->e164PhoneNumber
-        ]);
-    }
-
-    /**
-     * @test
-     */
-    public function request_should_fail_when_phoneNumber_already_exists()
-    {
-        $client=Client::factory()->create()->first();
-
-        $this->validation_results_as_expected(false, [
-            'firstName' => $this->faker->regexify('[A-Za-z]{2,32}'),
-            'lastName' => $this->faker->regexify('[A-Za-z]{2,32}'),
-            'email' => $this->faker->email,
-            'phoneNumber' =>$client->phoneNumber
         ]);
     }
 
@@ -198,5 +184,20 @@ class ClientStoreRequestTest extends TestCase
     {
         return $this->validator->make($mockedRequestData, $this->rules)
             ->passes();
+    }
+
+    /**
+     * @test
+     */
+    public function request_should_fail_when_phoneNumber_already_exists()
+    {
+        $client = Client::factory()->create()->first();
+
+        $this->validation_results_as_expected(false, [
+            'firstName' => $this->faker->regexify('[A-Za-z]{2,32}'),
+            'lastName' => $this->faker->regexify('[A-Za-z]{2,32}'),
+            'email' => $this->faker->email,
+            'phoneNumber' => $client->phoneNumber
+        ]);
     }
 }

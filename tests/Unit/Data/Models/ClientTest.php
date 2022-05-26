@@ -32,17 +32,6 @@ class ClientTest extends TestCase
      */
     private string $phone;
 
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->client = new Client();
-        $this->name = $this->faker->regexify('[A-Za-z]{2,32}');
-        $this->email = $this->faker->email;
-        $this->phone = $this->faker->e164PhoneNumber;
-    }
-
     /** @test */
     public function can_get_first_name(): void
     {
@@ -73,5 +62,15 @@ class ClientTest extends TestCase
         $this->client->setEmail($this->email);
 
         $this->assertEquals($this->client->getEmail(), $this->email);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->client = new Client();
+        $this->name = $this->faker->regexify('[A-Za-z]{2,32}');
+        $this->email = $this->faker->email;
+        $this->phone = $this->faker->e164PhoneNumber;
     }
 }

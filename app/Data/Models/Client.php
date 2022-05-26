@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Data\Models;
 
 use App\Services\Client\database\factories\ClientFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -20,11 +20,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Client extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    protected $table='clients';
+    protected $table = 'clients';
 
-    protected $guarded=[];
+    protected $guarded = [];
 
     /**
      * @return ClientFactory

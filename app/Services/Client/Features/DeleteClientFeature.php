@@ -30,6 +30,6 @@ class DeleteClientFeature extends Feature
         $this->run(DeleteClientJob::class, ['client' => $this->client]);
         return $this->run(new RespondWithJsonJob([
             'message' => 'Client deleted'
-        ],Response::HTTP_NO_CONTENT));
+        ], Response::HTTP_NO_CONTENT));
     }
 }

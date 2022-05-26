@@ -13,4 +13,4 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('clients','ClientController')->except('index');
+Route::apiResource('clients', 'ClientController')->except('index');
